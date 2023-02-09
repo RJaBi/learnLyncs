@@ -4,12 +4,13 @@ channels:
 dependencies:
   - python=3.10.8
   - numpy
-  - matplotlib
-  - scipy
-  - typing
+  - matplotlib  # for plots
+  - scipy       # for making random U(N) (hence SU(N) matrices
+  - typing      # type hints
   - pip
-  - mypy
-  - jupyter
+  - mypy        # type checking
+  - jupyter     # for notebooks
+  - flake8      # for style checking
   - pip:
-    - gvar
-    - lyncs_io
+    - gvar      # for doing statistics
+    - lyncs_io  # for io
