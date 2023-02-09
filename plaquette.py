@@ -64,7 +64,7 @@ def plaquette(data: np.ndarray, muStart: int = 0, muEnd: int = 4, nuEnd: int = 4
     data is [nt, nx, ny, nz, mu, colour, colour] complex
     the plaquette over all lattice is muStart=0, muEnd=4
     the spatial plaquette is muStart=1, muEnd=4, nuEnd=4
-    the temporal plaquette is muStart=0, muEnd=0, nuEnd=4
+    the temporal plaquette is muStart=0, muEnd=1, nuEnd=4
     returns the sum of plaquettes, number of plaquettes measured,
     the average plaquette and the time taken to calculate it
     """
