@@ -1,0 +1,15 @@
+name: lyncs
+channels:
+  - defaults
+dependencies:
+  - python=3.10.8
+  - numpy
+  - matplotlib
+  - scipy
+  - typing
+  - pip
+  - mypy
+  - jupyter
+  - pip:
+    - gvar
+    - lyncs_io
