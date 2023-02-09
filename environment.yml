@@ -1,16 +1,19 @@
 name: lyncs
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - python=3.10.8
   - numpy
-  - matplotlib  # for plots
-  - scipy       # for making random U(N) (hence SU(N) matrices
-  - typing      # type hints
+  - matplotlib          # for plots
+  - scipy               # for making random U(N) (hence SU(N) matrices
+  - typing              # type hints
   - pip
-  - mypy        # type checking
-  - jupyter     # for notebooks
-  - flake8      # for style checking
+  - mypy                # type checking
+  - jupyter             # for notebooks
+  - flake8              # for style checking
+  - conda-forge::gxx    # for cppyy on weird machines without g++
   - pip:
-    - gvar      # for doing statistics
-    - lyncs_io  # for io
+    - gvar              # for doing statistics
+    - lyncs_io          # for io
+    - lyncs_cppyy       # required for loading openqcd format
