@@ -20,7 +20,7 @@ program readFortran
   open(unit, file=fileName, form='unformatted', action='read', access='stream')
   read(unit) U
   close(unit)
-
+  write(*,*) 'type, sumTrp, nP, ave, time (seconds)'
   call plaquette(U, 1, 4, 4, sumTrP, nP, time)
   write(*,*) 'whole', sumTrP, nP, sumTrP / real(nP, kind=dp), time
   call plaquette(U, 2, 4, 4, sumTrP, nP, time)
