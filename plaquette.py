@@ -112,7 +112,7 @@ def plaquette(data: np.ndarray, muStart: int = 0, muEnd: int = 4, nuEnd: int = 4
                             # Multiply left, top together, take dagger
                             UmudagUnudag = MultiplyMatdagMatdag(Umu_xnu, Unu_x)
                             # multiply two halves together, take trace
-                            P = np.real(np.trace(np.matmul(UmuUnu, UmudagUnudag)))
+                            P = RealTraceMultMatMat(UmuUnu, UmudagUnudag)
                             sumTrP = sumTrP + P
                             nP = nP + 1
     end = time()
