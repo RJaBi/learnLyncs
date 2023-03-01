@@ -24,7 +24,7 @@ int main(){
     int Ns = 24;
     
     // Open pointer to binary file containing data
-    FILE *fptr = fopen("Gen2_8x24_gfAr0.Cdata","r");
+    FILE *fptr = fopen("Gen2_8x24_gfAr0.C","r");
     //FILE *fptr = fopen("testfile", "r");
 
     if( fptr == NULL ) {
