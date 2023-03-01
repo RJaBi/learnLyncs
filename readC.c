@@ -28,7 +28,7 @@ int main(){
     //FILE *fptr = fopen("testfile", "r");
 
     if( fptr == NULL ) {
-        fprintf(stderr, "Couldn't open %s: %s\n", "Gen2_8x24_gfAr0.Cdata", strerror(errno));
+        fprintf(stderr, "Couldn't open %s: %s\n", "Gen2_8x24_gfAr0.C", strerror(errno));
         exit(1);
     }
  
