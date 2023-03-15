@@ -21,10 +21,13 @@ program readFortran
   read(unit) U
   close(unit)
   write(*,*) 'type, sumTrp, nP, ave, time (seconds)'
+  ! Whole plaquette
   call plaquette(U, 1, 4, 4, sumTrP, nP, time)
   write(*,*) 'whole', sumTrP, nP, sumTrP / real(nP, kind=dp), time
+  ! Spatial Plaquette
   call plaquette(U, 2, 4, 4, sumTrP, nP, time)
   write(*,*) 'spatial', sumTrP, nP, sumTrP / real(nP, kind=dp), time
+  ! Temporal Plaquette
   call plaquette(U, 1, 1, 4, sumTrP, nP, time)
   write(*,*) 'temporal', sumTrP, nP, sumTrP / real(nP, kind=dp), time
 
@@ -81,18 +84,18 @@ contains
     !Tr(left*right)
     !"""
     TrMM = real(left(1, 1) * right(1, 1) + left(1, 2) * right(2, 1) + left(1, 3) * right(3, 1) + &
-         left(2, 1) * right(1, 2) + left(2, 2) * right(2, 2) + left(2, 3) * right(3, 2) +  &
-         left(3, 1) * right(1, 3) + left(3, 2) * right(2, 3) + left(3, 3) * right(3, 3), kind=dp)
+                left(2, 1) * right(1, 2) + left(2, 2) * right(2, 2) + left(2, 3) * right(3, 2) + &
+                left(3, 1) * right(1, 3) + left(3, 2) * right(2, 3) + left(3, 3) * right(3, 3), kind=dp)
   end subroutine RealTraceMultMatMat
 
 
   
   subroutine plaquette(data, muStart, muEnd, nuEnd, sumTrP, nP, time)
     implicit none
-    complex(kind=dc), dimension(:, :, :, :, :, :, :), intent(in) :: data
-    integer, intent(in) :: muStart, muEnd, nuEnd
-    real(kind=dp), intent(out) :: sumTrP, time
-    integer, intent(out) :: nP
+    complex(kind=dc), dimension(:, :, :, :, :, :, :), intent(in)  :: data
+    integer,                                          intent(in)  :: muStart, muEnd, nuEnd
+    real(kind=dp),                                    intent(out) :: sumTrP, time
+    integer,                                          intent(out) :: nP
     !"""
     !Calculates the plaquette over muStart to muEnd
     !data is [nt, nx, ny, nz, mu, colour, colour] complex
@@ -135,7 +138,6 @@ contains
                       coordBase = (/ nt, nx, ny, nz /)
                       coord = coordBase
                       Umu_x = data(coord(1), coord(2), coord(3), coord(4), mu, :, :)
-                      ! write(*,*) Umu_x
                       !# U_nu(x + amu)
                       coord = coordBase + muCoord
                       !# respect periodic boundary conditions
@@ -144,7 +146,6 @@ contains
                             coord(cc) = 1
                          end if
                       end do
-                      ! write(*,*) mu, nu, nx, ny, nz, nt, coord(1), coord(2), coord(3), coord(4)
                       Unu_xmu = data(coord(1), coord(2), coord(3), coord(4), nu, :, :)
                       !# U_mu(x + anu)
                       coord = coordBase + nuCoord
@@ -164,14 +165,6 @@ contains
                       !# multiply two halves together, take trace
                       call RealTraceMultMatMat(P, UmuUnu, UmudagUnudag)
                       sumTrP = sumTrP + P
-                      !if (nP == 0) then
-                      !   write(*,*) Umu_x
-                      !   write(*,*) Unu_xmu
-                      !   write(*,*) Umu_xnu
-                      !   write(*,*) Unu_x
-                      !   write(*,*) UmuUnu
-                      !   write(*,*) UmudagUnudag
-                      !end if
                       nP = nP + 1
                    end do
                 end do
