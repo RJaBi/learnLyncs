@@ -2,7 +2,7 @@
 A bit of a guide on using [lyncs_io](https://github.com/Lyncs-API/lyncs.io) to read gaugefields into python
 
 # Conda Notes
-Use `environment.yml` for linux. Use `mac_environment.yml` for Mac. Use `win_environment.yml` for Windows.
+Use `linux_environment.yml` for linux. Use `mac_environment.yml` for Mac. Use `win_environment.yml` for Windows.
 
 ## Install Environment
 ```conda env create -f environment.yml```
